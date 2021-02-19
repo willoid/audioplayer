@@ -61,17 +61,17 @@ function setPos() {
 }
 
 function showCurrDuration() {
-  var currSeconds = audio.currentTime % 60;
-  var currMinutes = Math.floor(audio.currentTime / 60);
+  var currSeconds = parseInt(audio.currentTime % 60);
+  var currMinutes = parseInt(audio.currentTime / 60, 10);
   currDuration.value =
-    ("0" + currMinutes).substr(-2) + ":" + ("0" + currSeconds).substr(-2);
+    ("0" + currMinutes) + ":" + ("0" + currSeconds);
 }
 
 function addTotalDuration() {
   var totalDuration = document.getElementById("totalDuration");
-  var seconds = audio.duration % 60;
-  var minutes = Math.floor(audio.duration / 60);
+  var seconds = parseInt(audio.duration % 60);
+  var minutes = parseInt(audio.duration / 60, 10);
 
   totalDuration.value =
-    ("0" + minutes).substr(-2) + ":" + ("0" + seconds).substr(-2);
+    ("0" + minutes) + ":" + ("0" + seconds);
 }
