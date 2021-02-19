@@ -14,26 +14,24 @@ document.addEventListener(
 );
 
 audio.addEventListener("loadedmetadata", () => {
-  setSlider();
-  //updates de duration prompter
   showCurrDuration();
   addTotalDuration();
 });
 
 audio.addEventListener("timeupdate", () => {
-  setSliderVal();
+  seekUpdate();
   showCurrDuration();
   if (audio.currentTime >= audio.duration) {
     audio.currentTime === 0;
   }
 });
 
-var player;
+audio.addEventListener("ended", startplayer);
 
 function startplayer() {
-  player = document.getElementById("music_player");
-  player.controls = false;
+  audio.controls = false;
   pause.classList.add("hidden");
+  play.classList.remove("hidden");
 }
 
 function play_aud() {
@@ -51,20 +49,23 @@ function change_vol() {
   audio.volume = document.getElementById("change_vol").value;
 }
 
-//slider
+//slider progress controls
 
-function setSlider() {
-  slider.setAttribute("max", audio.duration);
+function seekTo() {
+  seekto = audio.duration * (slider.value / 100);
+  audio.currentTime = seekto;
 }
-function setSliderVal() {
-  slider.value = audio.currentTime;
-}
-//change audio position
 
-slider.addEventListener("input", setPos);
-function setPos() {
-  player.currentTime = slider.value;
+function seekUpdate() {
+  let seekPosition = 0;
+
+  // Check if the current track duration is a legible number
+  if (!isNaN(audio.duration)) {
+    seekPosition = audio.currentTime * (100 / audio.duration);
+    slider.value = seekPosition;
+  }
 }
+//time indicators
 
 function showCurrDuration() {
   var currSeconds = parseInt(audio.currentTime % 60);
@@ -80,7 +81,6 @@ function addTotalDuration() {
   totalDuration.value = "0" + minutes + ":" + ("0" + seconds);
 }
 
-
 //second player
 
 const playerArray = ["sample1", "sample2", "sample3"];
@@ -93,59 +93,55 @@ var prev = document.getElementById("prevBtn");
 var next = document.getElementById("nextBtn");
 var trackIndex = 0;
 
-
 //eventListeners
 
 aud.addEventListener("loadedmetadata", () => {
-  setTrackSlider();
   //updates de duration prompter
   showTrackCurrDuration();
   addTrackDuration();
 });
 
 aud.addEventListener("timeupdate", () => {
-  setTrackSliderVal();
+  seekingUpdate();
   showTrackCurrDuration();
   if (audio.currentTime >= audio.duration) {
     audio.currentTime === 0;
   }
 });
 
-//change time of audio when clicking on slider
-
-trackSlider.addEventListener("input", setSliderPos);
-
-function setSliderPos() {
-  aud.currentTime = trackSlider.value;
-}
+aud.addEventListener("ended", () => {changeTrack(1)});
 
 //prev and next btns
 
 function changeTrack(n) {
-  startMultiPlayer(trackIndex += n)
+  startMultiPlayer((trackIndex += n));
+  playAudio();
 }
-//main function 
+//main function
 
-function startMultiPlayer (n) {
- 
+function startMultiPlayer(n) {
   if (playerArray.length === 0) {
     prev.classList.add("hidden");
     next.classList.add("hidden");
     multiplayer = document.getElementById("multiplayer");
     multiplayer.controls = false;
     pauseBtn.classList.add("hidden");
-    aud.setAttribute('src', `./assets/sample1.mp3`)
+    aud.setAttribute("src", `./assets/sample1.mp3`);
   } else {
     multiplayer = document.getElementById("multiplayer");
     multiplayer.controls = false;
     pauseBtn.classList.add("hidden");
     playBtn.classList.remove("hidden");
-    if (n > playerArray.length){trackIndex = 0} 
-    if (n < 0) {trackIndex = playerArray.length -1}
-    aud.setAttribute('src', `./assets/${playerArray[trackIndex]}.mp3`);
+    if (n > playerArray.length) {
+      trackIndex = 0;
+    }
+    if (n < 0) {
+      trackIndex = playerArray.length - 1;
+    }
+    aud.setAttribute("src", `./assets/${playerArray[trackIndex]}.mp3`);
   }
 }
-//main functionalities 
+//main functionalities
 
 function playAudio() {
   aud.play();
@@ -162,13 +158,19 @@ function changevol() {
   aud.volume = document.getElementById("vol").value;
 }
 
-//time indicators
-
-function setTrackSlider() {
-  trackSlider.setAttribute("max", aud.duration);
+function seekingTo() {
+  seekingto = aud.duration * (trackSlider.value / 100);
+  aud.currentTime = seekingto;
 }
-function setTrackSliderVal() {
-  trackSlider.value = aud.currentTime;
+
+function seekingUpdate() {
+  let seekingPosition = 0;
+
+  // Check if the current track duration is a legible number
+  if (!isNaN(aud.duration)) {
+    seekingPosition = aud.currentTime * (100 / aud.duration);
+    trackSlider.value = seekingPosition;
+  }
 }
 
 function showTrackCurrDuration() {
@@ -184,9 +186,3 @@ function addTrackDuration() {
 
   totalDuration.value = "0" + minutes + ":" + ("0" + seconds);
 }
-
-
-
-
-
-

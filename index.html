@@ -42,7 +42,7 @@
         <input type="text" id="totalDuration" value="" />
 
         <div class="slidecontainer">
-          <input type="range" min="1" max="100" value="0" id="slider" />
+          <input type="range" min="1" max="100" value="0" id="slider" onchange="seekTo()"/>
         </div>
 
         <!--  <input
@@ -86,7 +86,7 @@
         <input type="text" id="trackDuration" value="" />
 
         <div class="slidecontainer">
-          <input type="range" min="1" max="100" value="0" id="trackSlider" />
+          <input type="range" min="1" max="100" value="0" id="trackSlider" onchange="seekingTo()" />
         </div>
 
         <input
