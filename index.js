@@ -109,7 +109,9 @@ aud.addEventListener("timeupdate", () => {
   }
 });
 
-aud.addEventListener("ended", () => {changeTrackWithoutPlay(1)});
+aud.addEventListener("ended", () => {
+  changeTrackWithoutPlay(1);
+});
 
 //prev and next btns
 
@@ -119,7 +121,7 @@ function changeTrack(n) {
 }
 
 function changeTrackWithoutPlay(n) {
-  startMultiPlayer((trackIndex += n))
+  startMultiPlayer((trackIndex += n));
 }
 //main function
 
@@ -136,7 +138,7 @@ function startMultiPlayer(n) {
     multiplayer.controls = false;
     pauseBtn.classList.add("hidden");
     playBtn.classList.remove("hidden");
-    if (n > playerArray.length) {
+    if (n >= playerArray.length) {
       trackIndex = 0;
     }
     if (n < 0) {
