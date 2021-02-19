@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Audio Test</title>
+    <link rel="stylesheet" href="style.css" />
     <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-    crossorigin="anonymous"
-  ></script>
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+      crossorigin="anonymous"
+    ></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
@@ -17,17 +18,73 @@
     />
   </head>
   <body>
-    <audio src="./assets/sample1.mp3"></audio>
+    <!--  <div id="playlist">
+      <audio src="./assets/sample1.mp3" controls="controls"></audio>
+      <audio src="./assets/sample1.mp3"></audio>
+      <audio src="./assets/sample1.mp3"></audio>
+      <audio src="./assets/sample1.mp3"></audio>
+      <audio src="./assets/sample1.mp3"></audio>
+      <audio src="./assets/sample1.mp3"></audio>
+    </div>
+
     <div class="player">
       <button><i class="fas fa-backward"></i></button>
       <button><i class="play-pause fas fa-play"></i></button>
       <button><i class="fas fa-forward"></i></button>
-      <div class="progress"></div>
+      <div id="tracker">
+        <div id="progress-bar"><span id="progress"></span></div>
+        <span id="duration">0:00</span>
+      </div>
       <button><i class="fas fa-volume-mute"></i></button>
+      <button><i class="fas fa-volume-up"></i></button>
+      <button><i class="fas fa-volume-down"></i></button>
     </div>
+    <script src="./index.js"></script> -->
+    <div id="wrapper">
+      <div id="player">
+        <audio id="music_player">
+          <source src="./assets/sample1.mp3" />
+        </audio>
+        <input
+          type="image"
+          src="./assets/Play (logo modifiable).png"
+          onclick="play_aud()"
+          id="play_button"
+        />
+        <input
+          type="image"
+          src="./assets/Pause (logo mofiable).png"
+          onclick="pause_aud()"
+          id="play_button"
+        />
 
-    <audio class="fertig" src="assets/sample1.mp3" controls="controls"></audio>
-    <script src="./index.js"></script>
-   
+        <input type="text" id="currDuration" value="0:00" />
+        <p>/</p>
+
+        <input type="text" id="totalDuration" value="" />
+
+        <div class="slidecontainer">
+          <input type="range" min="1" max="100" value="0" id="slider" />
+        </div>
+
+       <!--  <input
+          type="image"
+          src="./assets/Mute (logo modifiable).png"
+          onclick="stop_aud()"
+          id="play_button"
+        /> -->
+        <img src="./assets/Volume + (logo modifiable).png" id="vol_img" />
+        <input
+          type="range"
+          id="change_vol"
+          onchange="change_vol()"
+          step="0.05"
+          min="0"
+          max="1"
+          value="1"
+        />
+      </div>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
   </body>
 </html>
