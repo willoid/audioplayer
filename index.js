@@ -109,13 +109,17 @@ aud.addEventListener("timeupdate", () => {
   }
 });
 
-aud.addEventListener("ended", () => {changeTrack(1)});
+aud.addEventListener("ended", () => {changeTrackWithoutPlay(1)});
 
 //prev and next btns
 
 function changeTrack(n) {
   startMultiPlayer((trackIndex += n));
   playAudio();
+}
+
+function changeTrackWithoutPlay(n) {
+  startMultiPlayer((trackIndex += n))
 }
 //main function
 
