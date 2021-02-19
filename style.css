@@ -43,7 +43,7 @@ input[type=text] {
   font-size: 1rem;
 }
 #vol_img, #vol {
-  margin-left: 10px;
+  margin: 0 10px;
   width: 20px;
 }
 #slider, #trackSlider {
@@ -57,11 +57,9 @@ input[type=range] {
   margin: 0px 0;
   background-color: transparent;
   -webkit-appearance: none;
-  transition: all 0.5s;
 }
 input[type=range]:focus {
   outline: none;
-  transition: all linear 0.5s;
 }
 input[type=range]::-webkit-slider-runnable-track {
   background: #cbcbcb;
@@ -69,7 +67,6 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 10px;
   cursor: pointer;
-  transition: all linear 0.5s;
 }
 input[type=range]::-webkit-slider-thumb {
   margin-top: 0px;
@@ -79,18 +76,15 @@ input[type=range]::-webkit-slider-thumb {
   border-radius: 10px;
   cursor: pointer;
   -webkit-appearance: none;
-  transition: all linear 0.5s;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
   background: #cecece;
-  transition: all linear 0.5s;
 }
 input[type=range]::-moz-range-track {
   background: #cbcbcb;
   width: 100%;
   height: 10px;
   cursor: pointer;
-  transition: all linear 0.5s;
 }
 input[type=range]::-moz-range-thumb {
   width: 20px;
@@ -106,15 +100,12 @@ input[type=range]::-ms-track {
   width: 100%;
   height: 10px;
   cursor: pointer;
-  transition: all linear 0.5s;
 }
 input[type=range]::-ms-fill-lower {
   background: #c8c8c8;
-  transition: all linear 0.5s;
 }
 input[type=range]::-ms-fill-upper {
   background: #cbcbcb;
-  transition: all linear 0.5s;
 }
 input[type=range]::-ms-thumb {
   width: 20px;
@@ -122,15 +113,12 @@ input[type=range]::-ms-thumb {
   background: #5d5d5d;
   border-radius: 10px;
   cursor: pointer;
-  transition: all linear 0.5s;
 }
 input[type=range]:focus::-ms-fill-lower {
   background: #cbcbcb;
-  transition: all linear 0.5s;
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #cecece;
-  transition: all linear 0.5s;
 }
 @supports (-ms-ime-align:auto) {
   /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
